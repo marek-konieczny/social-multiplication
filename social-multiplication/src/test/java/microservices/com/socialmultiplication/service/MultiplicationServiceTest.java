@@ -24,7 +24,7 @@ public class MultiplicationServiceTest {
 
     @Test
     public void createRandomMultiplicationTest() {
-        // given (our mocked Random Generator service will return first 50, then 30)
+        //given (our mocked Random Generator service will return first 50, then 30)
         given(randomGeneratorService.generateRandomFactor()).willReturn(50, 30);
 
         // when
