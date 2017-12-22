@@ -1,6 +1,5 @@
 package microservices.com.socialmultiplication.service;
 
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,6 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 	@Autowired
 	public MultiplicationServiceImpl(RandomGeneratorService randomGeneratorService) {
 		 this.randomGeneratorService = randomGeneratorService;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package microservices.com.socialmultiplication.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
+import static org.mockito.BDDMockito.given;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,22 +16,23 @@ import microservices.com.socialmultiplication.domain.Multiplication;
 @SpringBootTest
 public class MultiplicationServiceTest {
 
-	@MockBean
-	private RandomGeneratorService randomGeneratorService;
-	
-	@Autowired
-	private MultiplicationService multiplicationService;
-	
-	@Test
-	public void createRandomMultiplication() {
-		
-		Multiplication multiplication = multiplicationService.createRandomMultiplication();
-		
-		assertThat(multiplication.getFactorA()).isEqualTo(50);
-		assertThat(multiplication.getFactorB()).isEqualTo(30);
-		assertThat(multiplication.getResult()).isEqualTo(1500);
-		}
-	
-	
+    @MockBean
+    private RandomGeneratorService randomGeneratorService;
 
+    @Autowired
+    private MultiplicationService multiplicationService;
+
+    @Test
+    public void createRandomMultiplicationTest() {
+        // given (our mocked Random Generator service will return first 50, then 30)
+        given(randomGeneratorService.generateRandomFactor()).willReturn(50, 30);
+
+        // when
+        Multiplication multiplication = multiplicationService.createRandomMultiplication();
+
+        // assert
+        assertThat(multiplication.getFactorA()).isEqualTo(50);
+        assertThat(multiplication.getFactorB()).isEqualTo(30);
+        assertThat(multiplication.getResult()).isEqualTo(1500);
+    }
 }
