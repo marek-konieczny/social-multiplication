@@ -26,6 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebMvcTest(MultiplicationController.class)
 public class MultiplicationControllerTest {
 
+
     @MockBean
     private MultiplicationService multiplicationService;
 
