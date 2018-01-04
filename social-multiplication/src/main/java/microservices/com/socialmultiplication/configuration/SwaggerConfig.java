@@ -1,4 +1,4 @@
-package microservices.com.socialmultiplication;
+package microservices.com.socialmultiplication.configuration;
 
 import java.util.Collections;
 

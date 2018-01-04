@@ -28,5 +28,4 @@ public interface MultiplicationService {
      * @return a list of {@link MultiplicationResultAttempt} objects, being the past attempts of the user.
      */
     List<MultiplicationResultAttempt> getStatsForUser(final String userAlias);
-
 }
