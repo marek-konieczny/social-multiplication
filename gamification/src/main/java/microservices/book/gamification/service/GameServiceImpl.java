@@ -134,11 +134,11 @@ class GameServiceImpl implements GameService {
     /**
      * Assigns a new badge to the given user
      */
-    private BadgeCard giveBadgeToUser(final Badge badge, final Long userId) {
-        BadgeCard badgeCard = new BadgeCard(userId, badge);
-        badgeCardRepository.save(badgeCard);
-        log.info("User with id {} won a new badge: {}", userId, badge);
-        return badgeCard;
-    }
+	private BadgeCard giveBadgeToUser(final Badge badge, final Long userId) {
+		BadgeCard badgeCard = new BadgeCard(userId, badge);
+		badgeCardRepository.save(badgeCard);
+		log.info("User with id {} won a new badge: {}", userId, badge);
+		return badgeCard;
+	}
 
 }

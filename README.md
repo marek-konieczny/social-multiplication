@@ -1,1 +1,9 @@
 # social-multiplication
+
+### Docker 
+
+- Rabbitmq
+
+```sh
+docker run -d --hostname code-couple --name rabbit-queue -p 15672:15672 -p 5672:5672 rabbitmq:3.6-management
+```
