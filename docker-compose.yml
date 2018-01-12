@@ -1,13 +1,11 @@
-version: '3'
+version: '2.0'
 services:
   rabbitmq:
     image: rabbitmq:3.6-management
-    hostname: "rabbit1"
+    hostname: "rabbit_docker"
     ports:
       - "15672:15672"  # management port (guest:guest)
       - "5672:5672"    # amqp port
-    labels:
-      NAME: "rabbitmq_docker"
        
   service-registry:
     image: service-registry
@@ -20,18 +18,30 @@ services:
      - service-registry
     ports:
      - "8000:8000"
-        
+    environment:
+     EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-registry:8761/eureka/
+     SPRING_SLEUTH_ENABLED: "true"
+          
   social-multiplication:
     image: social-multiplication
     links:
      - rabbitmq
      - service-registry
-   # deploy:
-   #   mode: replicated
-   #   replicas: 2
-      
+    environment:
+     MULTIPLICATIONHOST: http://gamification:8080
+     SPRING_RABBITMQ_HOST: rabbitmq
+     EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-registry:8761/eureka/
+     SPRING_SLEUTH_ENABLED: "true"   
+    
   gamification:
     image: gamification
     links:
      - rabbitmq
      - service-registry
+    environment:
+     SPRING_RABBITMQ_HOST: rabbitmq
+     EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-registry:8761/eureka/
+     SPRING_SLEUTH_ENABLED: "true" 
